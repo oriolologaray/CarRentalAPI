@@ -1,0 +1,18 @@
+{
+  "cars": [
+    {
+      "id": "",
+      "make": "",
+      "model": "",
+      "color": "",
+      "bookings": [
+        {
+          "id": "",
+          "startTime": 0,
+          "endTime": 1,
+          "bookerId": ""
+        }
+      ]
+    }
+  ]
+}
