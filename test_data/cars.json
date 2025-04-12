@@ -1,16 +1,30 @@
 {
   "cars": [
     {
-      "id": "",
-      "make": "",
-      "model": "",
-      "color": "",
+      "id": "car-01",
+      "make": "Seat",
+      "model": "Ibiza",
+      "color": "red",
       "bookings": [
         {
-          "id": "",
-          "startTime": 0,
-          "endTime": 1,
-          "bookerId": ""
+          "id": "booking-01",
+          "startDate": "01-01-2024",
+          "endDate": "01-01-2026",
+          "bookerId": "person-01"
+        }
+      ]
+    },
+    {
+      "id": "car-02",
+      "make": "Ford",
+      "model": "Fiesta",
+      "color": "blue",
+      "bookings": [
+        {
+          "id": "booking-02",
+          "startDate": "01-01-2024",
+          "endDate": "31-01-2025",
+          "bookerId": "person-02"
         }
       ]
     }
