@@ -1,0 +1,16 @@
+[
+  {
+    "id": "booking-01",
+    "carId": "car-01",
+    "startDate": "01-01-2024",
+    "endDate": "01-01-2026",
+    "bookerId": "person-01"
+  },
+  {
+    "id": "booking-02",
+    "carId": "car-02",
+    "startDate": "01-01-2024",
+    "endDate": "31-01-2025",
+    "bookerId": "person-02"
+  }
+]

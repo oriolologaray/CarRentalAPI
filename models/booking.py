@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 class Booking(BaseModel):
     id: str
+    car_id: str
     start_date: date
     end_date: date
     booker_id: str
