@@ -1,8 +1,10 @@
 import json
-from datetime import date, datetime
+
+from pydantic.v1.json import pydantic_encoder
 
 from models.booking import Booking
 from models.car import Car
+from utils.parsers import parse_car
 
 CARS_DB_PATH = 'test_data/cars.json'
 BOOKINGS_DB_PATH = 'test_data/bookings.json'
@@ -19,27 +21,11 @@ def get_all_bookings() -> list[Booking]:
     with open(BOOKINGS_DB_PATH, 'r') as file:
         data = json.load(file)
 
-    return [parse_booking(booking) for booking in data]
+    return [Booking(**booking) for booking in data]
 
 
-def parse_date(date_str: str) -> date:
-    return datetime.strptime(date_str, '%d-%m-%Y').date()
+def write_booking(booking: Booking):
+    bookings = get_all_bookings() + [booking]
 
-
-def parse_booking(booking_data: dict) -> Booking:
-    return Booking(
-        id=booking_data['id'],
-        car_id=booking_data['carId'],
-        start_date=parse_date(booking_data['startDate']),
-        end_date=parse_date(booking_data['endDate']),
-        booker_id=booking_data['bookerId']
-    )
-
-
-def parse_car(car_data: dict) -> Car:
-    return Car(
-        id=car_data['id'],
-        make=car_data['make'],
-        model=car_data['model'],
-        color=car_data['color']
-    )
+    with open(BOOKINGS_DB_PATH, 'w') as file:
+        json.dump([booking.model_dump(by_alias=True) for booking in bookings], file, default=pydantic_encoder, indent=2)
