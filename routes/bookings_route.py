@@ -16,7 +16,7 @@ def get_bookings() -> list[Booking]:
 def create_booking(booking: Booking) -> Booking:
     booking.id = get_new_booking_id()
 
-    # Check car is not booked
+    # Check that car is not booked
 
     write_booking(booking)
 
