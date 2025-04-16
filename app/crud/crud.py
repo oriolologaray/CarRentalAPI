@@ -2,11 +2,9 @@ import json
 
 from pydantic.v1.json import pydantic_encoder
 
-from models.booking import Booking
-from models.car import Car
-
-CARS_DB_PATH = 'test_data/cars.json'
-BOOKINGS_DB_PATH = 'test_data/bookings.json'
+from app.config import CARS_DB_PATH, BOOKINGS_DB_PATH
+from app.models.booking import Booking
+from app.models.car import Car
 
 
 def get_all_cars() -> list[Car]:

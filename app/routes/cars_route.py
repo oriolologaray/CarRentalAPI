@@ -2,9 +2,9 @@ from datetime import date
 
 from fastapi import APIRouter
 
-from crud.crud import get_all_cars, get_all_bookings
-from models.car import Car
-from utils.logger import logger
+from app.crud.crud import get_all_cars, get_all_bookings
+from app.models.car import Car
+from app.utils.logger import logger
 
 router = APIRouter()
 

@@ -1,6 +1,6 @@
 from datetime import date, datetime
 
-from crud.crud import get_all_bookings
+from app.crud.crud import get_all_bookings
 
 
 def get_new_booking_id():
