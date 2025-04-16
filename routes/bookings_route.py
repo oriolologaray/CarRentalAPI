@@ -1,7 +1,8 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from crud.crud import get_all_bookings, write_booking
 from models.booking import Booking
+from utils.logger import logger
 from utils.utils import get_new_booking_id
 
 router = APIRouter()
@@ -9,15 +10,24 @@ router = APIRouter()
 
 @router.get('/bookings/')
 def get_bookings() -> list[Booking]:
+    logger.info('Attempting to get all bookings.')
+
     return get_all_bookings()
 
 
 @router.post('/bookings/')
-def create_booking(booking: Booking) -> Booking:
-    booking.id = get_new_booking_id()
+def create_booking(new_booking: Booking) -> Booking:
+    logger.info('Attempting to create a new booking.')
 
-    # Check that car is not booked
+    car_bookings = [booking for booking in get_all_bookings() if booking.car_id == new_booking.car_id]
 
-    write_booking(booking)
+    if any(booking.is_active_on(new_booking.start_date, new_booking.end_date) for booking in car_bookings):
+        logger.error(f'Car with id {new_booking.car_id} is booked on the selected time range.')
+        raise HTTPException(status_code=500, detail='Booking creation failed.')
 
-    return booking
+    new_booking.id = get_new_booking_id()
+    write_booking(new_booking)
+
+    logger.info(f'Booking with id {new_booking.id} successfully created.')
+
+    return new_booking
