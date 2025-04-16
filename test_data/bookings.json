@@ -14,7 +14,7 @@
     "bookerId": "person-02"
   },
   {
-    "id": "sample-booking-id",
+    "id": "booking-03",
     "carId": "car-01",
     "startDate": "1999-01-01",
     "endDate": "2000-01-01",
